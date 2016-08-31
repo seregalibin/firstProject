@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>My HTML File</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="app.js"></script>
+  </head>
+  <body ng-app="game">
+  
+  <div ng-controller="teamsController">
+      <h3>Название 1й команды: {{team1}}</h3>
+      <input ng-model="team1" placeholder="enter team name">
+
+      <hr>
+
+      <h3>Название 2й команды: {{team2}}</h3>
+      <input ng-model="team2" placeholder="enter team name">
+
+      <hr>
+
+      <h4 align="center">1й Вариант</h4>
+
+      <form ng-submit="addScore()">
+        <input type="text" ng-model="addTo1" size="20" placeholder="add points">
+        <input type="text" ng-model="addTo2" size="20" placeholder="add points">
+        <input type="submit" value="Add New"><br>
+        <h3>Score: {{score1}} : {{score2}}</h3>
+
+      </form>
+
+      <hr>
+      
+      <h4 align="center">2й Вариант(финальный)</h4>
+
+
+      <div ng-repeat="item in addings">
+          <input type="checkbox" ng-checked="isExists(item)" ng-click="toggle(item)" />
+          {{item.name}}
+      </div>
+
+      <div>
+        <input type="text" ng-model="addTo21" size="20" placeholder="add points">
+        <button ng-click="addScore3(1)">
+          Add Points to {{team1}}
+        </button>
+        <button ng-click="addScore3(2)">
+          Add Points to {{team2}}
+        </button>
+
+        <hr />
+
+        <h3>Score: {{score1}} : {{score2}}</h3>
+      </div>
+
+      <hr>
+
+      <form ng-submit="addScore2()"></form>
+
+      <table border="1" width="100%">
+      <tr>
+
+        <th>Chose</th>
+        <th>team 1</th>
+        <th>team 2</th>
+      </tr>
+
+          <th></th>
+          <tr ng-repeat="x in actionList">
+          <td><input type="checkbox" ng-model="x.delete"></td>
+          <td><span ng-bind="x.actionTeam1"></span></td>
+          <td><span ng-bind="x.actionTeam2"></span></td>
+        </tr>
+      </table>
+
+      <p><button ng-click="remove()">Remove marked game</button></p>
+      <h2><p><button ng-click="startNewGame()">Start new game!</button></p></h2>
+
+
+
+    </div>
+
+      
+
+  </body>
+</html>
