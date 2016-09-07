@@ -10,31 +10,22 @@ var app = angular.module('game', []);
 		$scope.game = 162;
 		$scope.extraScore = 0;
 
+
+
 		$scope.actionList = [{actionTeam1: 0,actionTeam2: 0, delete:false}];
 
-/////   Счетчик для 1 варианта   /////
 
-		$scope.addScore = function(){
-			
-			$scope.score1 = $scope.score1 + $scope.addTo1 *1;
-			$scope.score2 = $scope.score2 + $scope.addTo2 *1;
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-			$scope.actionList.push({actionTeam1:$scope.addTo1, actionTeam2:$scope.addTo2, delete:false});
-
-			$scope.addTo1 = "";
-			$scope.addTo2 = "";
-
-			$scope.checkJack = checked;
-		};
-
-/////   Счетчик для 2 варианта ////
 		$scope.addScore21 = function(){
 
-			$scope.countPointsTeam2 = $scope.game + $scope.extraScore - $scope.addTo21;
+			var pointsTeam1 = $scope.addTo21 + $scope.extraScore;
 
-			$scope.actionList.push({actionTeam1:$scope.addTo21, actionTeam2:$scope.countPointsTeam2, delete:false});
+			var pointsTeam2 = $scope.game + $scope.extraScore - pointsTeam1;
 
-			$scope.addTo21 = "";
+			$scope.actionList.push({actionTeam1:pointsTeam1, actionTeam2:pointsTeam2, delete:false});
+
+			$scope.addTo21 = undefined;
 
 			$scope.extraScore = 0;
 
@@ -44,11 +35,13 @@ var app = angular.module('game', []);
 
 		$scope.addScore22 = function(){
 
-			$scope.countPointsTeam1 = $scope.game + $scope.extraScore - $scope.addTo21;
+			var pointsTeam2 = $scope.addTo21 + $scope.extraScore;
 
-			$scope.actionList.push({actionTeam1:$scope.countPointsTeam1, actionTeam2:$scope.addTo21, delete:false});
+			var pointsTeam1 = $scope.game + $scope.extraScore - pointsTeam2;
 
-			$scope.addTo21 = "";
+			$scope.actionList.push({actionTeam1:pointsTeam1, actionTeam2:pointsTeam2, delete:false});
+
+			$scope.addTo21 = undefined;
 
 			$scope.extraScore = 0;
 
@@ -72,10 +65,10 @@ var app = angular.module('game', []);
 ///// Прибавление очков //////
 
 		  	$scope.addings = [
-				{name: 'Терц #1 (+30)', score:30},
-				{name: 'Терц #2 (+30)', score:30},
-				{name: 'Терц #3 (+30)', score:30},
-				{name: 'Терц #4 (+30)', score:30},
+				{name: 'Терц #1 (+20)', score:20},
+				{name: 'Терц #2 (+20)', score:20},
+				{name: 'Терц #3 (+20)', score:20},
+				{name: 'Терц #4 (+20)', score:20},
 				{name: 'Полтина #1 (+50)', score:50},
 				{name: 'Полтина #2 (+50)', score:50},
 				{name: 'Полтина #3 (+50)', score:50},

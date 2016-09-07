@@ -19,22 +19,6 @@
       <input ng-model="team2" placeholder="enter team name">
 
       <hr>
-      
-
-      <h4 align="center">1й Вариант</h4>
-
-      <form ng-submit="addScore()">
-        <input type="text" ng-model="addTo1" size="20" placeholder="add points">
-        <input type="text" ng-model="addTo2" size="20" placeholder="add points">
-        <input type="submit" value="Add New"><br>
-        <h3>Score: {{score1}} : {{score2}}</h3>
-
-      </form>
-
-      <hr>
-      
-      <h4 align="center">2й Вариант(финальный)</h4>
-
 
       <div ng-repeat="item in addings">
           <input type="checkbox" ng-checked="isExists(item)" ng-click="toggle(item)" />
@@ -42,7 +26,7 @@
       </div>
 
       <div>
-        <input type="text" ng-model="addTo21" size="20" placeholder="add points">
+        <input type="number" ng-model="addTo21" size="20" placeholder="add points">
         <button ng-click="addScore3(1)">
           Add Points to {{team1}}
         </button>
