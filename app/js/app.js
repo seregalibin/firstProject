@@ -1,5 +1,5 @@
 
-var app = angular.module('game', []);
+var app = angular.module('game', ['Debbiapp.sevices']);
 	
 	app.constant('standard', {
 		team1: '',
@@ -27,7 +27,10 @@ var app = angular.module('game', []);
 	  
 
 
-	app.controller('teamsController', ['$scope', 'standard', function($scope, standard){
+	app.controller('teamsController', ['$scope', 'standard','calcService', function($scope, standard, calcService){
+
+		$scope.lalflfl = undefined;
+
 		$scope.team1 = standard.team1;
 		$scope.team2 = standard.team2
 
@@ -39,6 +42,39 @@ var app = angular.module('game', []);
 		$scope.extraScore = 0;
 
 		$scope.actionList = [];
+
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+		$scope.team1Points = $scope.gamepoints - $scope.team2Points;
+		$scope.team1Tertses = 0;
+		$scope.team1Paltinas = 0;
+		$scope.team1Bella = 0;
+
+		$scope.team2Points = $scope.gamepoints - $scope.team1Points;
+		$scope.team2Tertses = 0;
+		$scope.team2Paltinas = 0;
+		$scope.team2Bella = 0;
+
+		var currentGameObj = {
+			team1: {
+				points: $scope.team1Points,
+				tertses: $scope.team1Tertses,
+				paltinas: $scope.team1Paltinas,
+				bella: $scope.team1Bella
+			},
+			team2: {
+				points: $scope.team2Points,
+				tertses: $scope.team2Tertses,
+				paltinas: $scope.team2Paltinas,
+				bella: $scope.team2Bella
+			}
+		};
+
+
+			$scope.totalScores = calcService.calcScore(currentGameObj);
+			
+			// $scope.countTeamsScore1 = calcService.countTeamsScore(team1Points, 1);
+			// $scope.countTeamsScore2 = calcService.countTeamsScore(team2Points, 2);
 
 
 			$scope.addScore21 = function(){

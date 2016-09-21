@@ -5,7 +5,8 @@
     <title>My HTML File</title>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <script src="/bower_components/angular/angular.js"></script>
-    <script src="app.js"></script>
+    <script src="sevices/calc.service.js"></script>
+    <script src="js/app.js"></script>
   </head>
   <body ng-app="game">
   
@@ -43,7 +44,38 @@
 
       <hr>
 
+      <hr>
+      
+
       <form ng-submit="addScore2()"></form>
+      
+      <div>
+
+        <h2>{{team1}}</h2>
+        
+        <p>Очки: <input type="number" ng-model = "team1Points"></p>
+        <p>Терц: <input type="number" ng-model = "team1Tertses"></p>
+        <p>Палтина: <input type="number" ng-model = "team1Paltinas"></p>
+        <p>Белла: <input type="checkbox" ng-model = "team1Bella" ng-true-value=1 ng-false-value=0></p>
+
+
+        <hr>
+
+        <h2>{{team2}}</h2>
+
+
+        <p>Очки: <input type="number" ng-model = "team2Points"></p>
+        <p>Терц: <input type="number" ng-model = "team2Tertses"></p>
+        <p>Палтина: <input type="number" ng-model = "team2Paltinas"></p>
+        <p>Белла: <input type="checkbox" ng-model = "team2Bella" ng-true-value=1 ng-false-value=0></p>
+
+        
+         <h3> Счtn: <span ng-bind="totalScores"></span></h3>
+      
+
+      </div>
+      
+      <hr>
 
       <table border="1" width="100%">
       <tr>
