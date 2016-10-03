@@ -5,44 +5,45 @@
     <title>My HTML File</title>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <script src="/bower_components/angular/angular.js"></script>
+    <script src="services/services.js"></script>
     <script src="js/app.js"></script>
   </head>
   <body ng-app="game">
   
   <div ng-controller="teamsController">
       <h4>Название 1й команды: {{team1}}</h4>
-      <input ng-model="team1" placeholder="enter team name">
+      <input ng-model="obj.team1.name" placeholder="enter team name">
 
       <hr>
 
       <h4>Название 2й команды: {{team2}}</h4>
-      <input ng-model="team2" placeholder="enter team name">
+      <input ng-model="obj.team2.name" placeholder="enter team name">
 
       <hr>
               
       <div>
-        <h4>Игра: <span ng-bind="calcGamePins()"></span></h4>
+        <h4>Игра: <span ng-bind="fn.calcGamePins()"></span></h4>
 
         <hr>
         
-        <p>{{team1}}<input type="number" ng-model="addTeam1" ng-change="addingScore(1)" min="0"> | <span ng-bind="textScoreTeam1"></span></p>
-        <p>Кол-во терцов:<input type="number" ng-model="addTerz1" min="0" max="4" ng-change="addingScore(1)"></p>
-        <p>Кол-во палтин:<input type="number" ng-model="addPaltinas1" min="0" max="4" ng-change="addingScore(1)"></p>
+        <p> {{obj.team1.name}} <input type="number" ng-model="obj.team1.addTeam1" ng-change="fn.addingScore(1)" min="0"> | <span ng-bind="obj.team1.textScoreTeam1"></span></p>
+        <p>Кол-во терцов:<input type="number" ng-model="obj.team1.addTerz1" min="0" max="4" ng-change="fn.addingScore(1)"></p>
+        <p>Кол-во палтин:<input type="number" ng-model="obj.team1.addPaltinas1" min="0" max="4" ng-change="fn.addingScore(1)"></p>
                   
         <hr>
 
-        <p>{{team2}}<input type="number" ng-model="addTeam2" ng-change="addingScore(2)" min="0"> | <span ng-bind="textScoreTeam2"></span></p>
-        <p>Кол-во терцов:<input type="number" ng-model="addTerz2" min="0" max="4" ng-change="addingScore(2)"></p>
-        <p>Кол-во палтин:<input type="number" ng-model="addPaltinas2" min="0" max="4" ng-change="addingScore(2)"></p>
+        <p> {{obj.team2.name}} <input type="number" ng-model="obj.team2.addTeam2" ng-change="fn.addingScore(2)" min="0"> | <span ng-bind="obj.team2.textScoreTeam2"></span></p>
+        <p>Кол-во терцов:<input type="number" ng-model="obj.team2.addTerz2" min="0" max="4" ng-change="fn.addingScore(2)"></p>
+        <p>Кол-во палтин:<input type="number" ng-model="obj.team2.addPaltinas2" min="0" max="4" ng-change="fn.addingScore(2)"></p>
 
         <hr>
-        <h3><button ng-click="calcGameScore()">Добавить игру</button></h3>
+        <h3><button ng-click="fn.calcGameScore()">Добавить игру</button></h3>
 
       </div>
 
       <hr>
 
-      <form ng-submit="addScore2()"></form>
+      <form ng-submit="fn.addScore2()"></form>
 
       <table border="1" width="100%">
       <tr>
@@ -51,15 +52,15 @@
         <th>team 2</th>
       </tr>
           <th></th>
-          <tr ng-repeat="x in actionList">
+          <tr ng-repeat="x in fn.actionList">
           <td><input type="checkbox" ng-model="x.delete"></td>
           <td><span ng-bind="x.actionTeam1"></span></td>
           <td><span ng-bind="x.actionTeam2"></span></td>
         </tr>
       </table>
 
-      <p><button ng-click="remove()">Remove marked game</button></p>
-      <h2><p><button ng-click="startNewGame()">Start new game!</button></p></h2>
+      <p><button ng-click="fn.remove()">Remove marked game</button></p>
+      <h2><p><button ng-click="fn.startNewGame()">Start new game!</button></p></h2>
 
     </div>
   </body>
