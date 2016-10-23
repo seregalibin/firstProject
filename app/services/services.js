@@ -1,29 +1,30 @@
 angular.module('Debbiapp.sevices', []).
-  factory('calcService', function(standard) {
+  factory('calcService', function(models, standard) {
 
     var calcService = {};
 
-    calcService.Objects = {
-      team1: {
-        name: '',
-        addTeam1: 0,
-        textScoreTeam1: 0,
-        addTerz1: 0,
-        addPaltinas1: 0
-      },
-      team2: {
-        name: '',
-        addTeam2: 0,
-        textScoreTeam2: 0,
-        addTerz2: 0,
-        addPaltinas2: 0
-      },
-      gamepoints: standard.gamepoints,
-    };
+    // calcService.Objects = {
+    //   team1: {
+    //     name: '',
+    //     addTeam1: 0,
+    //     textScoreTeam1: 0,
+    //     addTerz1: 0,
+    //     addPaltinas1: 0
+    //   },
+    //   team2: {
+    //     name: '',
+    //     addTeam2: 0,
+    //     textScoreTeam2: 0,
+    //     addTerz2: 0,
+    //     addPaltinas2: 0
+    //   },
+    // };
+
+    calcService.Objects = models.Models.Objects;
+
+    calcService.gamepoints = standard.gamepoints,
 
     calcService.actionList = [];
-
-    calcService.addings = standard.addings
 
     calcService.selected = [];
 
@@ -64,7 +65,7 @@ angular.module('Debbiapp.sevices', []).
     };
 
     calcService.calcGamePins = function(num){
-        var general = calcService.Objects.gamepoints;
+        var general = calcService.gamepoints;
       if(num == 1){
         return general
       } else {
@@ -80,8 +81,6 @@ angular.module('Debbiapp.sevices', []).
     };
 
     calcService.addingScore = function(team) {
-      var add1 = calcService.Objects.team1.addTeam1;
-      var add2 = calcService.Objects.team2.addTeam2;
       var generalScore = calcService.calcGamePins(1);
 
       if(team == 1){
@@ -89,7 +88,7 @@ angular.module('Debbiapp.sevices', []).
           } else if (team == 2) {
             calcService.Objects.team1.addTeam1 = generalScore - calcService.Objects.team2.addTeam2
           }
-          calcService.calcTextGamePoints();
+        calcService.calcTextGamePoints();
         };
 
     calcService.calcGameScore = function() {

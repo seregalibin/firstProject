@@ -1,5 +1,5 @@
 
-var app = angular.module('game', ['Debbiapp.sevices']);
+var app = angular.module('game', ['Debbiapp.models', 'Debbiapp.sevices']);
 	
 	app.constant('standard', {
 		team1: '',
@@ -24,9 +24,9 @@ var app = angular.module('game', ['Debbiapp.sevices']);
 
 	});
 
-	app.controller('teamsController', ['$scope', 'standard', 'calcService', function($scope, standard, calcService){
+	app.controller('teamsController', ['$scope', 'standard', 'models', 'calcService', function($scope, standard, models, calcService){
 
-		$scope.obj = calcService.Objects;	
+		$scope.obj = models.Models.Objects;	
 		$scope.fn = calcService;	
 
 	}]);
